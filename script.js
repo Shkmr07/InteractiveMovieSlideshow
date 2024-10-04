@@ -16,17 +16,63 @@ const arrayOfImages = ['https://plus.unsplash.com/premium_photo-1683910767532-3a
 
 
 let slide = document.getElementById('slideimage')
+let idx = 0
+let intervalLoop;
+let isPlaying = false
 
-let image = document.createElement('img')
-image.src = arrayOfImages[5]
+function slideshow(item){
 
-slide.append(image)
+    slide.innerHTML = ''
+
+    let image = document.createElement('img')
+    image.src = item
+
+    slide.append(image)
+
+}
 
 
+document.getElementById('nxt').addEventListener('click',()=>{
+    clearInterval(intervalLoop)
+    intervalLoop = null
+    idx = (idx + 1) % arrayOfImages.length
+    let item = arrayOfImages[idx]
+    slideshow(item)
+    
+})
 
 
+document.getElementById('prev').addEventListener('click',()=>{
+    clearInterval(intervalLoop)
+    intervalLoop = null
+    idx = (idx - 1 + arrayOfImages.length) % arrayOfImages.length
+    let item = arrayOfImages[idx]
+    slideshow(item)
+})
 
 
+document.getElementById('play').addEventListener('click',()=>{
+
+    if (!isPlaying && !intervalLoop){
+        
+        intervalLoop = setInterval(()=>{
+            idx = (idx + 1) % arrayOfImages.length
+            slideshow(arrayOfImages[idx])
+        },2000)
+
+        isPlaying = true
+        document.getElementById('play').textContent = 'Pause'
+    }
+
+    else{
+
+        clearInterval(intervalLoop)
+        intervalLoop = null
+        isPlaying = false
+        document.getElementById('play').textContent = 'Play'
+    }
+})
 
 
+slideshow(arrayOfImages[0])
 
