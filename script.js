@@ -6,12 +6,10 @@
 // Ensure smooth transitions between images and provide interactive controls (play/pause, next, previous) for navigation.
 // Handle edge cases such as out-of-bounds positions and ensure the slideshow loops back to the beginning after displaying the last image.
 
-const arrayOfImages = ['https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
-    'https://images.unsplash.com/photo-1706694442016-bd539e1d102b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
-    'https://images.unsplash.com/photo-1709884735626-63e92727d8b6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
-    'https://images.unsplash.com/photo-1544894079-e81a9eb1da8b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1669357657874-34944fa0be68?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
-    'https://images.unsplash.com/photo-1709884732294-90379fee354c?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D'
+const arrayOfImages = ['https://cdn.shopify.com/s/files/1/0057/3728/3618/files/scan_78cface5-e199-4a21-b714-4c1a6d2b20ca_500x749.jpg?v=1718312413',
+    'https://cdn.shopify.com/s/files/1/0057/3728/3618/files/darkknight.building.24x36_20e90057-f673-4cc3-9ce7-7b0d3eeb7d83_500x749.jpg?v=1707491191',
+    'https://cdn.shopify.com/s/files/1/0057/3728/3618/files/jurassicpark.mpw_500x749.jpg?v=1713805481',
+    'https://cdn.shopify.com/s/files/1/0057/3728/3618/files/shawshank_eb84716b-efa9-44dc-a19d-c17924a3f7df_500x749.jpg?v=1709821984'
 ]
 
 
@@ -34,16 +32,21 @@ function slideshow(item){
 
 document.getElementById('nxt').addEventListener('click',()=>{
     clearInterval(intervalLoop)
+    document.getElementById('play').textContent = 'Play/Pause'
+    isPlaying = false
     intervalLoop = null
     idx = (idx + 1) % arrayOfImages.length
     let item = arrayOfImages[idx]
     slideshow(item)
+
     
 })
 
 
 document.getElementById('prev').addEventListener('click',()=>{
     clearInterval(intervalLoop)
+    document.getElementById('play').textContent = 'Play/Pause'
+    isPlaying = false
     intervalLoop = null
     idx = (idx - 1 + arrayOfImages.length) % arrayOfImages.length
     let item = arrayOfImages[idx]
